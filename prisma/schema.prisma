@@ -21,7 +21,7 @@ model Parts{
   description String?
   category    String
   price       Float
-  year        Int?
+  year        Int       @default(2025)
   make       String?
   model       String?
   type        String?

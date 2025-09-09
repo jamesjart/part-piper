@@ -8,8 +8,6 @@
   }
 }
 
-
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -66,8 +64,6 @@
   }
 }
 
-
-
 @layer base {
   * {
     @apply border-border;
@@ -75,4 +71,16 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Light mode selection */
+::selection {
+  background: #d1d5db; /* light gray */
+  color: #111827; /* dark text */
+}
+
+/* Dark mode selection */
+.dark ::selection {
+  background: #374151; /* dark gray */
+  color: #f9fafb; /* light text */
 }

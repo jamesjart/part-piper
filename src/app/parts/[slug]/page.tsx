@@ -6,24 +6,18 @@ import { getPartsById } from "@/actions/part.action";
 import { stackServerApp } from "@/stack";
 import { SignIn } from "@stackframe/stack";
 
-export async function generateMetadata({
-  params,
-}: {
+interface PageProps {
   params: { slug: string };
-}) {
-  // Extract the id from the slug by splitting on the delimiter
-  const [id] = params.slug.split("--");
-  const part = await getPartsById(id);
-  return {
-    title: part ? part.name : "Part Details",
-    description: part ? part.description : "Part details page",
-  };
 }
 
-async function page({ params }: { params: { slug: string } }) {
-  const user = await stackServerApp.getUser();
-  const [id] = params.slug.split("--");
+export default async function Page({ params }: PageProps) {
+  // Your slug is like "cmfbjt6zy0000xpfoo4kjnein-ae86-engine"
+  // The part ID is before the first dash
+  const [id] = params.slug.split("-");
   const part = await getPartsById(id);
+
+  // Get the current user from the stackServerApp (adjust as needed for your auth setup)
+  const user = await stackServerApp.getUser?.();
 
   if (!user) {
     return <SignIn />;
@@ -37,5 +31,3 @@ async function page({ params }: { params: { slug: string } }) {
     </div>
   );
 }
-
-export default page;

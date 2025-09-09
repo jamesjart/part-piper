@@ -28,6 +28,7 @@ import { getParts } from "@/actions/part.action";
 import { useRouter } from "next/navigation";
 import CreateDialog from "./CreateDialog";
 import EditDialog from "./EditDialog";
+import DeleteDialog from "./DeleteDialog";
 
 type Parts = Awaited<ReturnType<typeof getParts>>;
 
@@ -163,7 +164,7 @@ export default function InventoryTable({ parts }: InventoryTableProps) {
                     onClick={(e) => e.stopPropagation()}
                   >
                     <EditDialog part={part} />
-                    <h1>Delete Button</h1>
+                    <DeleteDialog part={part} />
                   </div>
                 </TableCell>
               </TableRow>
